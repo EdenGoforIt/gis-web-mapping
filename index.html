@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- Openlayers -->
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css"
+            type="text/css"
+        />
+    </head>
+
+    <body>
+        <div id="map"></div>
+        <input id="search-bar" placeholder="Search" />
+        <input
+            type="range"
+            min="1950"
+            max="2024"
+            value="1950"
+            class="slider"
+            id="year-range"
+        />
+        <script type="module" src="./main.js"></script>
+    </body>
+</html>

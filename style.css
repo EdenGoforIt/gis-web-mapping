@@ -1,0 +1,153 @@
+@import 'node_modules/ol/ol.css';
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#search-bar {
+    position: absolute;
+    font-size: 16px;
+    width: 50%;
+    border: 2px solid #4caf50;
+    margin-left: 30%;
+    top: 5px;
+    border-radius: 10px;
+}
+/* Change border color and placeholder color on focus */
+#search-bar:focus {
+    border-color: #4caf50;
+}
+
+/* Change placeholder color */
+#search-bar::placeholder {
+    color: #4caf50;
+    opacity: 1; /* Ensure the color applies with full opacity */
+    padding: 10px;
+}
+
+/* For Firefox */
+#search-bar:-moz-placeholder {
+    color: #4caf50;
+    opacity: 1;
+}
+
+/* For Internet Explorer */
+#search-bar::-ms-input-placeholder {
+    color: #4caf50;
+    opacity: 1;
+}
+#year-range {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    font-size: 16px;
+    margin-left: 30%;
+    bottom: 25px;
+    border-radius: 10px;
+    -webkit-appearance: none; /* Override default styling */
+}
+
+#year-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px; /* Increase the height of the track */
+    cursor: pointer;
+    animate: 0.2s;
+    background: #4caf50; /* Change the color of the track */
+    border-radius: 10px;
+}
+
+#year-range::-webkit-slider-thumb {
+    border: 1px solid #000000;
+    height: 25px; /* Increase the size of the thumb */
+    width: 25px; /* Increase the size of the thumb */
+    border-radius: 50%;
+    background: #ffffff; /* Change the color of the thumb */
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -8px; /* Align the thumb with the track */
+}
+
+#year-range:focus {
+    outline: none;
+}
+
+#year-range:focus::-webkit-slider-runnable-track {
+    background: #4caf50; /* Change the color when focused */
+}
+
+#year-range::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #4caf50;
+    border-radius: 10px;
+}
+
+#year-range::-moz-range-thumb {
+    border: 1px solid #000000;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+#year-range::-ms-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+#year-range::-ms-fill-lower {
+    background: #4caf50;
+    border-radius: 10px;
+}
+
+#year-range::-ms-fill-upper {
+    background: #4caf50;
+    border-radius: 10px;
+}
+
+#year-range::-ms-thumb {
+    border: 1px solid #000000;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+#year-range:focus::-ms-fill-lower {
+    background: #4caf50;
+}
+
+#year-range:focus::-ms-fill-upper {
+    background: #4caf50;
+}
+
+.slider-label {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #555;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    white-space: nowrap;
+    transition: left 0.1s, transform 0.1s;
+}
