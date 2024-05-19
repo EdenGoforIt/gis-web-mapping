@@ -13,7 +13,15 @@
 
     <body>
         <div id="map"></div>
-        <input id="search-bar" placeholder="Search" />
+        <div class="autocomplete-container">
+            <input
+                type="text"
+                class="search-bar"
+                placeholder="Search"
+                autocomplete="off"
+            />
+            <div class="autocomplete-list"></div>
+        </div>
         <input
             type="range"
             min="1950"
