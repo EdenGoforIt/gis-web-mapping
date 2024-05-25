@@ -25,7 +25,10 @@ function createLabels() {
         const label = document.createElement('div')
         label.className = 'slider-label'
         label.textContent = i
-        label.addEventListener('click', () => moveSliderToYear(i))
+        label.addEventListener('click', (event) => {
+            console.log('Label clicked:', event.target.value)
+            moveSliderToYear(i)
+        })
         document.body.appendChild(label)
         positionLabel(label, i)
     }
@@ -59,7 +62,22 @@ function updateActiveLabel() {
     })
 }
 
-slider.addEventListener('input', updateActiveLabel)
+function updateLabelsPosition() {
+    const labels = document.querySelectorAll('.slider-label')
+    labels.forEach((label) => {
+        const value = parseInt(label.textContent, 10)
+        positionLabel(label, value)
+    })
+}
+
+slider.addEventListener('input', (event) => {
+    console.log('Slider input event:', event.target.value)
+    updateActiveLabel()
+    updateLabelsPosition()
+})
+
+window.addEventListener('resize', updateLabelsPosition)
 
 // Initialize labels on page load
 createLabels()
+updateLabelsPosition() // Ensure initial positioning
