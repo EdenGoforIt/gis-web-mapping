@@ -11,7 +11,13 @@ body {
     bottom: 0;
     width: 100%;
 }
-
+#message{
+    position: absolute;
+    color: red;
+    bottom: 110px;
+    font-size: 25px;
+    margin-left: 31%;
+}
 /* Change border color and placeholder color on focus */
 #search-bar:focus {
     border-color: #4caf50;

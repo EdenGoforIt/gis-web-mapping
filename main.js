@@ -3,6 +3,7 @@ import TileLayer from 'ol/layer/Tile'
 import { fromLonLat } from 'ol/proj'
 import OSM from 'ol/source/OSM'
 import './style.css'
+import { WMSLayerConfigs } from './map.js'
 //  Vector layer
 const map = new Map({
     target: 'map',
@@ -16,6 +17,7 @@ const map = new Map({
         zoom: 6,
     }),
 })
+
 const slider = document.getElementById('year-range')
 
 function createLabels() {
@@ -81,3 +83,38 @@ window.addEventListener('resize', updateLabelsPosition)
 // Initialize labels on page load
 createLabels()
 updateLabelsPosition() // Ensure initial positioning
+
+function updateWMSLayer(year) {
+    const config = getWMSLayerConfig(year)
+    if (config) {
+        const wmsLayer = new ol.layer.Tile({
+            source: new ol.source.TileWMS({
+                url: config.url,
+                params: config.params,
+                serverType: config.serverType,
+                transition: config.transition,
+            }),
+        })
+
+        // Remove the existing WMS layer if any
+        map.getLayers()
+            .getArray()
+            .forEach((layer) => {
+                if (
+                    layer instanceof ol.layer.Tile &&
+                    layer.getSource() instanceof ol.source.TileWMS
+                ) {
+                    map.removeLayer(layer)
+                }
+            })
+
+        // Add the new WMS layer
+        map.addLayer(wmsLayer)
+    }
+}
+
+function getWMSLayerConfig(year) {
+    return WMSLayerConfigs[year]
+}
+
+updateWMSLayer(2018)
