@@ -12,15 +12,6 @@ body {
     width: 100%;
 }
 
-#search-bar {
-    position: absolute;
-    font-size: 16px;
-    width: 50%;
-    border: 2px solid #4caf50;
-    margin-left: 30%;
-    top: 5px;
-    border-radius: 10px;
-}
 /* Change border color and placeholder color on focus */
 #search-bar:focus {
     border-color: #4caf50;
@@ -137,7 +128,10 @@ body {
 #year-range:focus::-ms-fill-upper {
     background: #4caf50;
 }
-
+.slider-label.active {
+    background-color: white;
+    color: black;
+}
 .slider-label {
     position: absolute;
     top: -30px;
@@ -145,11 +139,12 @@ body {
     transform: translateX(-50%);
     background-color: #555;
     color: #fff;
-    padding: 5px 10px;
+    padding: 10px 40px;
     border-radius: 10px;
     font-size: 16px;
     white-space: nowrap;
     transition: left 0.1s, transform 0.1s;
+    cursor: pointer;
 }
 
 .search-bar {
@@ -180,7 +175,6 @@ body {
 
 .autocomplete-list {
     position: absolute;
-    border: 1px solid #4caf50;
     border-radius: 5px;
     border-top: none;
     z-index: 99;
