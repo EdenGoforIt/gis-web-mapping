@@ -5,8 +5,10 @@ import OSM from 'ol/source/OSM'
 import TileWMS from 'ol/source/TileWMS'
 import { WMSLayerConfigs } from './map.js'
 import './style.css'
+import { cities } from './city.js'
 
 const message = ''
+const urbanSize = 'Major'
 
 // Create the initial OpenLayers map
 const map = new Map({
@@ -29,7 +31,7 @@ const slider = document.getElementById('year-range')
 function createLabels() {
     const min = parseInt(slider.min, 10)
     const max = parseInt(slider.max, 10)
-    for (let i = min; i <= max; i += 2) {
+    for (let i = min; i <= max; i += 1) {
         const label = document.createElement('div')
         label.className = 'slider-label'
         label.textContent = i
@@ -159,3 +161,50 @@ function removeLayers() {
 function getWMSLayerConfig(year) {
     return WMSLayerConfigs[year]
 }
+
+function handleCategoryClick(event) {
+    const categoryLabels = document.querySelectorAll('.category-label')
+    categoryLabels.forEach((label) => {
+        label.classList.remove('active')
+    })
+    event.target.classList.add('active')
+    console.log(`${event.target.textContent} label clicked`)
+    // Add your logic for label click here
+}
+
+// Search
+// Autocomplete functionality
+const searchBar = document.querySelector('.search-bar')
+const autocompleteList = document.querySelector('.autocomplete-list')
+const suggestions = cities
+
+searchBar.addEventListener('input', () => {
+    const input = searchBar.value.toLowerCase()
+    autocompleteList.innerHTML = ''
+
+    if (!input) {
+        return false
+    }
+
+    const filteredSuggestions = suggestions.filter((suggestion) =>
+        suggestion.toLowerCase().includes(input.toLowerCase())
+    )
+    filteredSuggestions.forEach((suggestion) => {
+        const item = document.createElement('div')
+        item.classList.add('autocomplete-item')
+        item.textContent = suggestion
+
+        item.addEventListener('click', () => {
+            searchBar.value = suggestion
+            autocompleteList.innerHTML = ''
+        })
+
+        autocompleteList.appendChild(item)
+    })
+})
+
+document.addEventListener('click', (event) => {
+    if (event.target !== searchBar) {
+        autocompleteList.innerHTML = ''
+    }
+})
