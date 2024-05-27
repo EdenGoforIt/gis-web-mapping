@@ -195,6 +195,7 @@ searchBar.addEventListener('input', () => {
         item.textContent = suggestion
 
         item.addEventListener('click', () => {
+            console.log('search text clicked', suggestion)
             searchBar.value = suggestion
             autocompleteList.innerHTML = ''
         })

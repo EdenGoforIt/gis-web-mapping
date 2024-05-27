@@ -234,3 +234,28 @@ body {
 .autocomplete-list div:hover {
     background-color: #e9e9e9;
 }
+.legend {
+    margin-top: 20px;
+    left: 30px;
+    position: absolute;
+}
+.legend div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.legend div span {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.legend .red {
+    background-color: red;
+}
+.legend .orange {
+    background-color: orange;
+}
+.legend .yellow {
+    background-color: yellow;
+}
