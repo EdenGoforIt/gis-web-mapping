@@ -250,12 +250,15 @@ body {
     display: inline-block;
     margin-right: 10px;
 }
-.legend .red {
-    background-color: red;
+.legend .major {
+    background-color: #aa0f0f;
 }
-.legend .orange {
-    background-color: orange;
+.legend .large {
+    background-color: #ff1604;
 }
-.legend .yellow {
-    background-color: yellow;
+.legend .medium {
+    background-color: #ff7f27;
+}
+.legend .small {
+    background-color: #ede100;
 }

@@ -6,9 +6,13 @@ import TileWMS from 'ol/source/TileWMS'
 import { WMSLayerConfigs } from './map.js'
 import './style.css'
 import { cities } from './city.js'
+import { requests } from './postgis.js'
+
 
 const message = ''
 const urbanSize = 'Major'
+var centerCoordinates = []
+var suggestions = []
 
 // Create the initial OpenLayers map
 const map = new Map({
@@ -49,9 +53,8 @@ function positionLabel(label, value) {
     const rect = slider.getBoundingClientRect()
     const relativeValue = (value - slider.min) / (slider.max - slider.min)
     const percent = relativeValue * 100
-    label.style.left = `calc(${
-        rect.left + window.scrollX + (percent / 100) * rect.width
-    }px)`
+    label.style.left = `calc(${rect.left + window.scrollX + (percent / 100) * rect.width
+        }px)`
     label.style.top = `${rect.top + window.scrollY - 50}px`
 }
 
@@ -131,11 +134,16 @@ function updateWMSLayer(year) {
         // Add the new WMS layer
         console.log('Adding new WMS layer:', wmsLayer)
         map.addLayer(wmsLayer)
+        map.getView().setZoom(6);
+        map.getView().setCenter(fromLonLat([174.7633, -39.8485]));
 
         // Hide the message
         messageElement.style.display = 'none'
     } else {
         removeLayers()
+        map.getView().setZoom(6);
+        map.getView().setCenter(fromLonLat([174.7633, -39.8485]));
+
         // Show the message if the config is not found
         messageElement.textContent =
             'Data is not ready yet, we are trying hard to provide it soon...'
@@ -160,23 +168,12 @@ function removeLayers() {
 
 function getWMSLayerConfig(year) {
     return WMSLayerConfigs[year]
-}
-
-function handleCategoryClick(event) {
-    const categoryLabels = document.querySelectorAll('.category-label')
-    categoryLabels.forEach((label) => {
-        label.classList.remove('active')
-    })
-    event.target.classList.add('active')
-    console.log(`${event.target.textContent} label clicked`)
-    // Add your logic for label click here
-}
+} 
 
 // Search
 // Autocomplete functionality
 const searchBar = document.querySelector('.search-bar')
 const autocompleteList = document.querySelector('.autocomplete-list')
-const suggestions = cities
 
 searchBar.addEventListener('input', () => {
     const input = searchBar.value.toLowerCase()
@@ -198,6 +195,17 @@ searchBar.addEventListener('input', () => {
             console.log('search text clicked', suggestion)
             searchBar.value = suggestion
             autocompleteList.innerHTML = ''
+
+            const foundCenterCoordinate = centerCoordinates.find(x => x.name == suggestion);
+            console.log('found center coordinate', foundCenterCoordinate);
+            if (foundCenterCoordinate) {
+                const [lon, lat] = foundCenterCoordinate.coordinate.coordinates;
+                console.log('found center coordinate', lon, lat);
+
+                const transformedCoordinate = fromLonLat([lon, lat]);
+                map.getView().setCenter(transformedCoordinate);
+                map.getView().setZoom(10);
+            }
         })
 
         autocompleteList.appendChild(item)
@@ -209,3 +217,44 @@ document.addEventListener('click', (event) => {
         autocompleteList.innerHTML = ''
     }
 })
+
+async function fetchCities() {
+    $.ajax({
+        url: 'http://localhost:3000/api/cities',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            const names = data.map(x => x.name).filter(Boolean);
+            suggestions = suggestions.concat(names);
+            centerCoordinates = centerCoordinates.concat(data);
+        },
+        error: function (error) {
+            console.error('Error fetching cities data:', error);
+        }
+    });
+}
+
+
+async function fetchSuburbs() {
+    $.ajax({
+        url: 'http://localhost:3000/api/suburbs',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            const names = data.map(x => x.name).filter(Boolean);
+            suggestions = suggestions.concat(names);
+            centerCoordinates = centerCoordinates.concat(data);
+            console.log('center coordinates', centerCoordinates);
+
+        },
+        error: function (error) {
+            console.error('Error fetching suburbs data:', error);
+        }
+    });
+}
+
+fetchCities()
+fetchSuburbs()
+
+
+
