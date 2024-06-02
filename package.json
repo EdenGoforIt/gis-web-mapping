@@ -1,0 +1,22 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.10"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "ol": "latest",
+    "ol-ext": "^4.0.18",
+    "pg": "^8.11.5",
+    "wellknown": "^0.5.0",
+    "wkx": "^0.5.0"
+  }
+}

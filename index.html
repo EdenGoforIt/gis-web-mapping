@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- Openlayers -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+    <div id="map"></div>
+    <div class="autocomplete-container">
+        <input type="text" class="search-bar" placeholder="Search" autocomplete="off" />
+        <div class="autocomplete-list"></div>
+    </div>
+    <div class="legend">
+        <div><span class="major"></span>Major urban area</div>
+        <div><span class="large"></span>Large urban area</div>
+        <div><span class="medium"></span>Medium urban area</div>
+        <div><span class="small"></span>Small urban area</div>
+    </div>
+    <div class="history">
+        <div class="toggle-btn" title="Description of the history before 2018">Open History</div>
+        <div id="box" class="box">
+            <div class="section">
+                <h2>1919-1930s: Early Urban Planning and Garden City Movement</h2>
+                <p>The government held an urban planning conference in Wellington in 1919 to avoid the bad environmental
+                    influences marginal areas of Britain had already seen. From the meeting, there were two leading
+                    solutions: either to move urban people to new towns or reform the existing cities. The general
+                    assumption was that by doing proper town planning, proper towns or cities could be made healthy with
+                    the contribution of social stability. The second solution, the Garden Suburbs model, was more
+                    successful, with an early prototype developed in London's Hampstead. Architect Reginald Hammond
+                    tried to follow this model in Durie Hill but did not complete the project.</p>
+                <h6>Related images</h6>
+                <img src="./images/(1919 1)Wellington 1919 Urban Planning Conference.jpg"
+                    alt="(1919 1)Wellington 1919 Urban Planning Conference">
+                <img src="./images/(1919 2)Garden City Movement.png" alt="(1919 2)Garden City Movement">
+                <img src="./images/(1919 3)Hampstead Garden Suburb.jpeg" alt="(1919 3)Hampstead Garden Suburb">
+            </div>
+            <div class="section">
+                <h2>1940s-1950s: State Housing and Suburban Sprawl</h2>
+                <p>The State Housing Program arose out of the belief that town planning could significantly remake urban
+                    life, especially following the ruin of two world wars. This program drove the building of new state
+                    housing suburbs, notably in the Hutt Valley with Epuni, Naenae, and Taita, based on the garden city
+                    concept. However, these towns were not very socially successful, as residents preferred staying at
+                    home or socializing with neighbors rather than using community centers.
+
+                    As towns expanded, urban planning faced challenges due to space and resource limitations. This often
+                    led councils to rezone rural land for urban use, resulting in the loss of productive rural land and
+                    high infrastructure costs. Solutions included green belts around cities and denser settlements.
+                    Rapid suburban growth undermined the 1949 Auckland Development Plan's greenbelt restrictions.</p>
+                <h6>Related images</h6>
+                <img src="./images/(1940 1)Hutt Valley State Housing.jpg" alt="(1940 1)Hutt Valley State Housin">
+                <img src="./images/(1940 2)Epuni Naenae Taita suburbs.PNG" alt="(1940 2)Epuni Naenae Taita suburbs">
+                <img src="./images/(1940 3) Green Belts around Cities.jpg" alt="(1940 3) Green Belts around Cities">
+            </div>
+            <div class="section">
+                <h2>1950s-1970s: Motorway Construction and Urban Renewal </h2>
+                <p>By the early 1950s, urban growth and increased car ownership necessitated an extensive road network.
+                    Auckland planners initially proposed suburban railways but opted for a road-based system due to the
+                    city's low population density. The Auckland Harbour Bridge, opened in 1959, improved connectivity
+                    between Auckland and the North Shore.
+
+                    Urban renewal followed the impact of motorways on older neighborhoods, leading to gentrification as
+                    families bought and renovated old slum houses and apartments. This revitalized certain areas but
+                    displaced poorer populations to the outskirts.
+                </p>
+                <h6>Related images</h6>
+                <img src="./images/(1950 1)Auckland Harbour Bridge 1959 .jpg"
+                    alt="(1950 1)Auckland Harbour Bridge 1959">
+                <img src="./images/(1950 2)Motorway Construction New Zealand.jpg"
+                    alt="(1950 2)Motorway Construction New Zealand ">
+                <img src="./images/(1950 3)Urban Renewal 1970s.jpg" alt="(1950 3)Urban Renewal 1970s">
+            </div>
+            <div class="section">
+                <h2>1980s-1990s: Deregulation and the Resource Management Act </h2>
+                <p>In 1984, the Labour government believed that old-style regulation hindered economic growth and
+                    started a deregulation policy, strengthening private property rights and easing building
+                    restrictions. The Resource Management Act (RMA) of 1991 replaced the Town and Country Planning Act,
+                    further relaxing regulations. This led to the replacement of historic buildings with skyscrapers and
+                    the encroachment of shopping centers and business parks into residential areas, highlighting the
+                    need for coordinated urban planning.
+                </p>
+                <h6>Related images</h6>
+                <img src="./images/(1980 1)New Zealand Deregulation 1984 .jpg"
+                    alt="(1980 1)New Zealand Deregulation 1984 ">
+                <img src="./images/(1980 2)Resource Management Act 1991.jpg"
+                    alt="(1980 2)Resource Management Act 1991.jpg">
+            </div>
+            <div class="section">
+                <h2>2000 to 2017: Coordinated Growth Strategies </h2>
+                <p>Since the early 2000s, local bodies have devised more policies for coordinated growth to control
+                    urban development. The 1999 Auckland Regional Growth Strategy set out a 50-year vision to upgrade
+                    the suburban train network and restrain sprawl through urban consolidation. There was growing focus
+                    on public consultation and working with urban Māori. The development of Flat Bush in South Auckland
+                    in 2009 was a model of urban design and sustainability, aiming to be as car-free as possible and
+                    featuring ample green and recreational areas.
+                </p>
+                <h6>Related images</h6>
+                <img src="./images/(2000 2)Flat Bush South Auckland.PNG" alt="(2000 2)Flat Bush South Auckland">
+            </div>
+        </div>
+    </div>
+    <div id="message" class="message">
+    </div>
+
+    <input type="range" min="2018" max="2024" value="2018" class="slider" id="year-range" step="1" />
+    <script type="module" src="./main-wms.js"></script>
+</body>
+
+</html>
