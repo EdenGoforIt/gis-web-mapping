@@ -46,7 +46,7 @@ body {
     text-decoration: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 10%;
+    margin-left: 6%;
 }
 
 #category-container {
@@ -318,4 +318,54 @@ body {
 
 .legend .small {
     background-color: #ede100;
+}
+
+#marker {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #088;
+    border-radius: 10px;
+    background-color: #0FF;
+    opacity: 0.5;
+}
+
+#vienna {
+    text-decoration: none;
+    color: white;
+    font-size: 11pt;
+    font-weight: bold;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.popover-body {
+    min-width: 276px;
+}
+
+.pin {
+    width: 20px;
+    height: 20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50"><path fill="" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 5.8 11.9 6.1 12.3.4.5 1.2.5 1.6 0 .3-.4 6.1-7.1 6.1-12.3 0-3.9-3.1-7-7-7zM12 12c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/></svg>');
+    background-size: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.pin-description {
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    left: -50%;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.pin:hover .pin-description {
+    display: block;
+}
+.popover-body {
+    height: 400px;
+    overflow-y: auto; 
 }

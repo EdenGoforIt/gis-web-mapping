@@ -6,6 +6,8 @@
     <!-- Openlayers -->
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -16,12 +18,21 @@
         <input type="text" class="search-bar" placeholder="Search" autocomplete="off" />
         <div class="autocomplete-list"></div>
     </div>
+
+    <div class="marker-container" style="display: none;">
+        <div id="marker" title="Marker"></div>
+        <!-- Popup -->
+        <div id="popup"></div>
+    </div>
     <div class="legend">
         <div><span class="major"></span>Major urban area</div>
         <div><span class="large"></span>Large urban area</div>
         <div><span class="medium"></span>Medium urban area</div>
         <div><span class="small"></span>Small urban area</div>
     </div>
+    <div style=" " id="pin" class="pin">
+    </div>
+
     <div class="history">
         <div class="toggle-btn" title="Description of the history before 2018">Open History</div>
         <div id="box" class="box">
@@ -108,6 +119,9 @@
     </div>
 
     <input type="range" min="2018" max="2024" value="2018" class="slider" id="year-range" step="1" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script type="module" src="./main-wms.js"></script>
 </body>
 
